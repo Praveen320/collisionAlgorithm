@@ -1,4 +1,4 @@
-var fixedRect, movingRect;
+var fixedRect, movingRect,car,wall;
 
 function setup() {
   createCanvas(1200,800);
@@ -8,17 +8,28 @@ function setup() {
   movingRect = createSprite(400,200,80,30);
   movingRect.shapeColor = "green";
   movingRect.debug = true;
+
+  wall=createSprite(1000,150,60,90);
+  wall.shapeColor="pink";
+  
+  
+  car=createSprite(100,150,90,40)
+  car.shapeColor="blue";
+  car.velocityX=4;
 }
 
 function draw() {
   background(0,0,0);  
   movingRect.x = World.mouseX;
   movingRect.y = World.mouseY;
-
-  if (movingRect.x - fixedRect.x < fixedRect.width/2 + movingRect.width/2
-      && fixedRect.x - movingRect.x < fixedRect.width/2 + movingRect.width/2
-      && movingRect.y - fixedRect.y < fixedRect.height/2 + movingRect.height/2
-      && fixedRect.y - movingRect.y < fixedRect.height/2 + movingRect.height/2) {
+  //calling the function
+  if(touching(car,wall))
+  {
+    car.velocityX=0;
+  }
+  
+  if(touching(movingRect,fixedRect))
+  {
     movingRect.shapeColor = "red";
     fixedRect.shapeColor = "red";
   }
@@ -26,5 +37,7 @@ function draw() {
     movingRect.shapeColor = "green";
     fixedRect.shapeColor = "green";
   }
-  drawSprites();
+
+   drawSprites();
 }
+
