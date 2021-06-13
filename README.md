@@ -1,2 +1,2 @@
-# TopplingBoxes
-Toppling Boxes
+# collisionAlgorithm
+Algorithm to detect collision between two objects
